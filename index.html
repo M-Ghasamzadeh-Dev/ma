@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>مهدی قسم‌زاده | طراح و توسعه‌دهنده وب</title>
+<meta name="description" content="مهدی قسم‌زاده — طراح و توسعه‌دهنده وب خلاق. پورتفولیو، نمونه‌کارها و تماس با مهدی قسم‌زاده."/>
+<meta name="keywords" content="مهدی قسم‌زاده, Mahdi Ghasemzadeh, طراح وب, توسعه‌دهنده, پورتفولیو"/>
+<meta name="author" content="مهدی قسم‌زاده"/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:title" content="مهدی قسم‌زاده | طراح و توسعه‌دهنده وب"/>
+<meta property="og:description" content="پورتفولیو حرفه‌ای مهدی قسم‌زاده"/>
+<meta property="og:type" content="website"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"مهدی قسم‌زاده","alternateName":"Mahdi Ghasemzadeh","jobTitle":"طراح و توسعه‌دهنده وب"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,300;1,600&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet"/>
+<style>
+/* ══════════════════════════════════════
+   TOKENS
+══════════════════════════════════════ */
+:root{
+  --dark:   #292823;
+  --light:  #D7D7D7;
+  --white:  #f5f4f0;
+  --glass:  rgba(215,215,215,0.06);
+  --glass2: rgba(215,215,215,0.10);
+  --border: rgba(215,215,215,0.14);
+  --border2:rgba(215,215,215,0.28);
+  --accent: #D7D7D7;
+  --glow:   rgba(215,215,215,0.18);
+  --font-d: 'Cormorant Garamond', serif;
+  --font-b: 'Outfit', sans-serif;
+  --ease:   cubic-bezier(.16,1,.3,1);
+}
+ 
+/* ══════════════════════════════════════
+   RESET
+══════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:var(--font-b);
+  background:var(--dark);
+  color:var(--light);
+  overflow-x:hidden;
+  cursor:none;
+  line-height:1.7;
+}
+::selection{background:var(--light);color:var(--dark)}
+a{text-decoration:none;color:inherit}
+button{font-family:var(--font-b);cursor:none}
+ 
+/* ══════════════════════════════════════
+   CURSOR
+══════════════════════════════════════ */
+#cur-dot{
+  position:fixed;width:6px;height:6px;
+  background:var(--light);border-radius:50%;
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:width .25s,height .25s;
+}
+#cur-ring{
+  position:fixed;width:40px;height:40px;
+  border:1px solid rgba(215,215,215,.4);
+  border-radius:50%;pointer-events:none;z-index:9998;
+  transform:translate(-50%,-50%);
+  transition:width .4s var(--ease),height .4s var(--ease),
+             border-color .3s,background .3s;
+}
+body.hovered #cur-dot{width:10px;height:10px}
+body.hovered #cur-ring{
+  width:60px;height:60px;
+  border-color:var(--light);
+  background:rgba(215,215,215,.05);
+}
+ 
+/* ══════════════════════════════════════
+   CANVAS
+══════════════════════════════════════ */
+#bg-canvas{
+  position:fixed;inset:0;z-index:0;
+  pointer-events:none;
+}
+ 
+/* ══════════════════════════════════════
+   NOISE
+══════════════════════════════════════ */
+body::after{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:1;opacity:.5;
+}
+ 
+/* ══════════════════════════════════════
+   WRAP
+══════════════════════════════════════ */
+.wrap{position:relative;z-index:2}
+ 
+/* ══════════════════════════════════════
+   NAV
+══════════════════════════════════════ */
+nav{
+  position:fixed;top:20px;left:50%;
+  transform:translateX(-50%);
+  z-index:200;
+  display:flex;align-items:center;gap:8px;
+  padding:10px 14px;
+  background:rgba(41,40,35,.55);
+  border:1px solid var(--border);
+  border-radius:100px;
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  box-shadow:0 8px 40px rgba(0,0,0,.4),inset 0 1px 0 rgba(215,215,215,.08);
+  transition:all .5s var(--ease);
+}
+.nav-logo{
+  font-family:var(--font-d);
+  font-size:1rem;font-weight:600;
+  color:var(--light);
+  padding:4px 14px;letter-spacing:.04em;
+  white-space:nowrap;
+}
+.nav-sep{width:1px;height:18px;background:var(--border)}
+.nav-links{display:flex;gap:2px;list-style:none}
+.nav-links a{
+  padding:6px 14px;border-radius:100px;
+  font-size:.78rem;letter-spacing:.08em;
+  color:rgba(215,215,215,.6);
+  transition:color .3s,background .3s;
+}
+.nav-links a:hover{color:var(--light);background:var(--glass)}
+ 
+/* ══════════════════════════════════════
+   HERO
+══════════════════════════════════════ */
+#hero{
+  min-height:100vh;
+  display:flex;align-items:center;
+  padding:100px 60px 60px;
+  position:relative;
+  overflow:hidden;
+}
+ 
+.hero-grid{
+  display:grid;
+  grid-template-columns:1fr 380px;
+  gap:60px;align-items:center;
+  width:100%;max-width:1200px;margin:0 auto;
+}
+ 
+/* left */
+.hero-tag{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(215,215,215,.5);margin-bottom:24px;
+  opacity:0;animation:fadeUp .8s .1s var(--ease) forwards;
+}
+.hero-tag span{
+  display:inline-block;width:28px;height:1px;
+  background:rgba(215,215,215,.4);
+}
+h1.hero-name{
+  font-family:var(--font-d);
+  font-size:clamp(3.8rem,8vw,7.5rem);
+  font-weight:700;line-height:1;
+  letter-spacing:-.02em;
+  margin-bottom:10px;
+  opacity:0;animation:fadeUp .9s .25s var(--ease) forwards;
+}
+h1.hero-name em{
+  font-style:italic;font-weight:300;
+  color:rgba(215,215,215,.55);display:block;
+}
+.hero-role{
+  font-size:clamp(.9rem,1.8vw,1.15rem);
+  color:rgba(215,215,215,.45);font-weight:200;
+  letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:36px;
+  opacity:0;animation:fadeUp .9s .4s var(--ease) forwards;
+}
+.hero-desc{
+  font-size:1rem;color:rgba(215,215,215,.55);
+  max-width:440px;line-height:1.9;margin-bottom:48px;
+  opacity:0;animation:fadeUp .9s .5s var(--ease) forwards;
+}
+.hero-btns{
+  display:flex;gap:14px;flex-wrap:wrap;
+  opacity:0;animation:fadeUp .9s .65s var(--ease) forwards;
+}
+.btn-glass{
+  padding:14px 32px;border-radius:100px;
+  background:var(--glass);
+  border:1px solid var(--border2);
+  color:var(--light);font-size:.85rem;
+  letter-spacing:.08em;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  transition:all .35s var(--ease);
+  box-shadow:inset 0 1px 0 rgba(215,215,215,.1),0 4px 24px rgba(0,0,0,.2);
+}
+.btn-glass:hover{
+  background:rgba(215,215,215,.15);
+  border-color:rgba(215,215,215,.5);
+  transform:translateY(-3px);
+  box-shadow:inset 0 1px 0 rgba(215,215,215,.15),0 12px 36px rgba(0,0,0,.3),0 0 0 1px rgba(215,215,215,.1);
+}
+.btn-glass.solid{
+  background:var(--light);color:var(--dark);
+  border-color:var(--light);font-weight:500;
+}
+.btn-glass.solid:hover{
+  background:#fff;border-color:#fff;
+  box-shadow:0 12px 40px rgba(215,215,215,.25),0 0 60px rgba(215,215,215,.1);
+}
+ 
+/* right — 3D glass card */
+.hero-card{
+  perspective:1000px;
+  opacity:0;animation:fadeIn 1.2s .8s var(--ease) forwards;
+}
+.hero-card-inner{
+  background:var(--glass);
+  border:1px solid var(--border2);
+  border-radius:28px;
+  padding:40px 36px;
+  backdrop-filter:blur(30px);
+  -webkit-backdrop-filter:blur(30px);
+  box-shadow:
+    inset 0 1px 0 rgba(215,215,215,.15),
+    inset 0 -1px 0 rgba(0,0,0,.2),
+    0 24px 64px rgba(0,0,0,.5),
+    0 0 0 1px rgba(215,215,215,.04);
+  transform-style:preserve-3d;
+  transition:transform .5s var(--ease),box-shadow .5s;
+  position:relative;overflow:hidden;
+}
+.hero-card-inner::before{
+  content:'';position:absolute;
+  top:-60%;left:-60%;width:220%;height:220%;
+  background:radial-gradient(ellipse at 40% 35%,rgba(215,215,215,.07) 0%,transparent 60%);
+  pointer-events:none;
+}
+.card-avatar{
+  width:72px;height:72px;border-radius:50%;
+  background:linear-gradient(135deg,rgba(215,215,215,.3),rgba(215,215,215,.05));
+  border:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-d);font-size:2rem;font-weight:700;
+  color:var(--light);margin-bottom:24px;
+  box-shadow:0 8px 24px rgba(0,0,0,.3),inset 0 1px 0 rgba(215,215,215,.2);
+}
+.card-name-lg{
+  font-family:var(--font-d);font-size:1.5rem;font-weight:600;
+  margin-bottom:4px;color:var(--white);
+}
+.card-sub{
+  font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;
+  color:rgba(215,215,215,.4);margin-bottom:28px;
+}
+.card-divider{
+  height:1px;background:var(--border);
+  margin-bottom:24px;
+}
+.card-stats{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;
+  margin-bottom:28px;
+}
+.cstat-num{
+  font-family:var(--font-d);font-size:2rem;font-weight:700;
+  color:var(--light);line-height:1;
+}
+.cstat-lbl{
+  font-size:.7rem;letter-spacing:.1em;
+  color:rgba(215,215,215,.4);margin-top:2px;
+}
+.card-chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{
+  padding:5px 12px;border-radius:100px;
+  border:1px solid var(--border);
+  font-size:.7rem;letter-spacing:.06em;
+  color:rgba(215,215,215,.55);
+  background:rgba(215,215,215,.03);
+  transition:all .3s;
+}
+.chip:hover{border-color:var(--border2);color:var(--light)}
+ 
+/* scroll hint */
+.scroll-hint{
+  position:absolute;bottom:36px;left:60px;
+  display:flex;align-items:center;gap:12px;
+  font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(215,215,215,.3);
+  opacity:0;animation:fadeIn 1s 1.6s forwards;
+}
+.scroll-bar{
+  width:36px;height:1px;background:rgba(215,215,215,.15);
+  position:relative;overflow:hidden;
+}
+.scroll-bar::after{
+  content:'';position:absolute;inset:0;
+  background:var(--light);
+  animation:slide 2s ease-in-out infinite;
+}
+ 
+/* ══════════════════════════════════════
+   ABOUT STRIP
+══════════════════════════════════════ */
+#about{
+  padding:120px 60px;
+  background:rgba(215,215,215,.02);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+.about-layout{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:100px;align-items:center;
+}
+.sec-tag{
+  font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(215,215,215,.4);margin-bottom:18px;
+  display:flex;align-items:center;gap:10px;
+}
+.sec-tag::before{content:'';display:block;width:24px;height:1px;background:rgba(215,215,215,.3)}
+h2.sec-title{
+  font-family:var(--font-d);
+  font-size:clamp(2.2rem,4vw,3.6rem);
+  font-weight:600;line-height:1.12;
+  letter-spacing:-.01em;margin-bottom:28px;
+}
+h2.sec-title em{font-style:italic;font-weight:300;color:rgba(215,215,215,.5)}
+.about-p{
+  color:rgba(215,215,215,.5);font-size:.98rem;
+  line-height:1.95;margin-bottom:18px;
+}
+.about-p strong{color:var(--light);font-weight:400}
+ 
+/* floating glass panels */
+.glass-panels{
+  position:relative;height:380px;
+}
+.gpanel{
+  position:absolute;
+  background:var(--glass);
+  border:1px solid var(--border);
+  border-radius:20px;
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  padding:28px;
+  box-shadow:inset 0 1px 0 rgba(215,215,215,.1),0 20px 60px rgba(0,0,0,.4);
+  transition:transform .5s var(--ease),box-shadow .5s;
+}
+.gpanel:hover{
+  transform:translateY(-8px) scale(1.02) !important;
+  box-shadow:inset 0 1px 0 rgba(215,215,215,.15),0 32px 80px rgba(0,0,0,.5);
+}
+.gp1{width:240px;top:0;right:0;animation:floatA 6s ease-in-out infinite}
+.gp2{width:200px;bottom:0;right:60px;animation:floatB 7s ease-in-out infinite}
+.gp3{width:180px;top:80px;right:200px;animation:floatC 5.5s ease-in-out infinite}
+.gpanel-icon{font-size:1.6rem;margin-bottom:12px}
+.gpanel-title{font-family:var(--font-d);font-size:1rem;font-weight:600;margin-bottom:4px}
+.gpanel-sub{font-size:.72rem;color:rgba(215,215,215,.4);letter-spacing:.08em}
+ 
+/* ══════════════════════════════════════
+   SERVICES
+══════════════════════════════════════ */
+#services{padding:120px 60px}
+.sec-center{text-align:center;margin-bottom:72px}
+.sec-center .sec-tag{justify-content:center}
+.sec-center .sec-tag::before{display:none}
+.sec-center .sec-tag::after{content:'';display:block;width:24px;height:1px;background:rgba(215,215,215,.3)}
+ 
+.services-grid{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+}
+.scard{
+  background:var(--glass);
+  border:1px solid var(--border);
+  border-radius:24px;padding:40px 32px;
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  box-shadow:inset 0 1px 0 rgba(215,215,215,.08),0 8px 32px rgba(0,0,0,.3);
+  transition:all .4s var(--ease);
+  position:relative;overflow:hidden;
+}
+.scard::after{
+  content:'';position:absolute;
+  bottom:-80px;right:-80px;
+  width:180px;height:180px;border-radius:50%;
+  background:radial-gradient(circle,rgba(215,215,215,.06) 0%,transparent 70%);
+  transition:all .6s var(--ease);
+}
+.scard:hover{
+  border-color:rgba(215,215,215,.3);
+  transform:translateY(-10px);
+  box-shadow:inset 0 1px 0 rgba(215,215,215,.15),0 32px 64px rgba(0,0,0,.45),0 0 0 1px rgba(215,215,215,.08);
+}
+.scard:hover::after{transform:scale(1.5)}
+.scard-num{
+  font-family:var(--font-d);font-size:.8rem;
+  color:rgba(215,215,215,.2);letter-spacing:.1em;
+  margin-bottom:20px;
+}
+.scard-icon{font-size:2rem;margin-bottom:18px}
+.scard-title{
+  font-family:var(--font-d);font-size:1.3rem;font-weight:600;
+  margin-bottom:12px;color:var(--white);
+}
+.scard-desc{font-size:.88rem;color:rgba(215,215,215,.45);line-height:1.8}
+ 
+/* ══════════════════════════════════════
+   PORTFOLIO
+══════════════════════════════════════ */
+#portfolio{
+  padding:120px 60px;
+  background:rgba(215,215,215,.015);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+.port-grid{
+  max-width:1200px;margin:72px auto 0;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:auto;
+  gap:20px;
+}
+.pcard{
+  border-radius:24px;overflow:hidden;
+  border:1px solid var(--border);
+  background:var(--glass);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  transition:all .5s var(--ease);
+  position:relative;
+  box-shadow:0 8px 32px rgba(0,0,0,.3);
+}
+.pcard:first-child{grid-column:1/-1}
+.pcard:hover{
+  border-color:rgba(215,215,215,.3);
+  transform:translateY(-6px);
+  box-shadow:0 32px 64px rgba(0,0,0,.5);
+}
+.pcard-thumb{
+  height:260px;position:relative;overflow:hidden;
+}
+.pcard:first-child .pcard-thumb{height:340px}
+.pthumb-bg{
+  position:absolute;inset:0;
+  transition:transform .7s var(--ease);
+}
+.pcard:hover .pthumb-bg{transform:scale(1.06)}
+.pt1{
+  background:linear-gradient(135deg,rgba(41,40,35,1) 0%,rgba(60,58,50,1) 50%,rgba(41,40,35,1) 100%);
+}
+.pt2{background:linear-gradient(135deg,#1e1d1a,#2d2c27)}
+.pt3{background:linear-gradient(135deg,#252420,#1a1917)}
+ 
+/* glass orbs inside thumbs */
+.orb{
+  position:absolute;border-radius:50%;
+  filter:blur(30px);pointer-events:none;
+}
+.orb1{width:180px;height:180px;background:rgba(215,215,215,.08);top:-20px;left:-20px}
+.orb2{width:120px;height:120px;background:rgba(215,215,215,.05);bottom:10px;right:10px}
+ 
+.pcard-badge{
+  position:absolute;top:20px;right:20px;
+  padding:5px 14px;border-radius:100px;
+  background:rgba(41,40,35,.7);
+  border:1px solid rgba(215,215,215,.2);
+  backdrop-filter:blur(10px);
+  font-size:.7rem;letter-spacing:.12em;
+  color:rgba(215,215,215,.7);
+}
+.pcard-info{padding:28px 32px}
+.pcard-meta{
+  font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(215,215,215,.35);margin-bottom:8px;
+}
+.pcard-title{
+  font-family:var(--font-d);font-size:1.3rem;font-weight:600;
+  margin-bottom:8px;color:var(--white);
+}
+.pcard-desc{font-size:.85rem;color:rgba(215,215,215,.4);line-height:1.7}
+ 
+/* ══════════════════════════════════════
+   SKILLS
+══════════════════════════════════════ */
+#skills{padding:120px 60px}
+.skills-layout{
+  max-width:1200px;margin:72px auto 0;
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;
+  align-items:start;
+}
+.skill-item{margin-bottom:28px}
+.skill-head{
+  display:flex;justify-content:space-between;
+  margin-bottom:10px;
+}
+.skill-name{font-size:.88rem;color:rgba(215,215,215,.7)}
+.skill-pct{
+  font-family:var(--font-d);font-size:.9rem;
+  color:var(--light);
+}
+.skill-track{
+  height:2px;background:rgba(215,215,215,.06);
+  border-radius:100px;overflow:hidden;
+}
+.skill-fill{
+  height:100%;background:var(--light);
+  border-radius:100px;transform:scaleX(0);
+  transform-origin:right;
+  transition:transform 1.2s var(--ease);
+}
+.skill-fill.on{transform:scaleX(1)}
+ 
+/* tech orbs */
+.tech-orbs{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
+}
+.torb{
+  background:var(--glass);
+  border:1px solid var(--border);
+  border-radius:16px;padding:20px 14px;
+  text-align:center;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  transition:all .35s var(--ease);
+  box-shadow:inset 0 1px 0 rgba(215,215,215,.06),0 4px 20px rgba(0,0,0,.25);
+}
+.torb:hover{
+  border-color:rgba(215,215,215,.28);
+  transform:translateY(-5px);
+  box-shadow:inset 0 1px 0 rgba(215,215,215,.12),0 16px 40px rgba(0,0,0,.4);
+}
+.torb-icon{font-size:1.6rem;margin-bottom:6px}
+.torb-name{font-size:.7rem;color:rgba(215,215,215,.4);letter-spacing:.08em}
+ 
+/* ══════════════════════════════════════
+   CONTACT
+══════════════════════════════════════ */
+#contact{
+  padding:120px 60px;
+  border-top:1px solid var(--border);
+  background:rgba(215,215,215,.018);
+}
+.contact-wrap{max-width:780px;margin:0 auto;text-align:center}
+.contact-big{
+  font-family:var(--font-d);
+  font-size:clamp(3rem,7vw,6rem);
+  font-weight:300;font-style:italic;
+  color:rgba(215,215,215,.08);
+  letter-spacing:.02em;
+  margin-bottom:-20px;
+  line-height:1;
+  pointer-events:none;
+}
+.contact-form-card{
+  background:var(--glass);
+  border:1px solid var(--border);
+  border-radius:28px;padding:52px 48px;
+  backdrop-filter:blur(30px);
+  -webkit-backdrop-filter:blur(30px);
+  box-shadow:inset 0 1px 0 rgba(215,215,215,.1),0 32px 80px rgba(0,0,0,.4);
+  margin-top:36px;
+  position:relative;overflow:hidden;
+}
+.contact-form-card::before{
+  content:'';position:absolute;
+  top:-50%;right:-30%;width:80%;height:80%;
+  background:radial-gradient(ellipse,rgba(215,215,215,.04) 0%,transparent 60%);
+  pointer-events:none;
+}
+.quick-btns{
+  display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
+  margin-bottom:36px;
+}
+.qbtn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 22px;border-radius:100px;
+  background:rgba(215,215,215,.05);
+  border:1px solid var(--border);
+  color:rgba(215,215,215,.6);font-size:.8rem;
+  letter-spacing:.06em;
+  backdrop-filter:blur(8px);
+  transition:all .3s var(--ease);
+  box-shadow:inset 0 1px 0 rgba(215,215,215,.06);
+}
+.qbtn:hover{
+  background:rgba(215,215,215,.12);
+  border-color:rgba(215,215,215,.35);
+  color:var(--light);transform:translateY(-2px);
+}
+.form-divider{
+  display:flex;align-items:center;gap:16px;
+  margin-bottom:28px;color:rgba(215,215,215,.2);
+  font-size:.72rem;letter-spacing:.12em;
+}
+.form-divider::before,.form-divider::after{
+  content:'';flex:1;height:1px;background:var(--border);
+}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fg{display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+.fg label{font-size:.72rem;color:rgba(215,215,215,.35);letter-spacing:.08em;text-align:right}
+.fg input,.fg textarea{
+  background:rgba(215,215,215,.04);
+  border:1px solid rgba(215,215,215,.1);
+  border-radius:14px;
+  padding:13px 16px;
+  color:var(--light);
+  font-family:var(--font-b);font-size:.9rem;
+  outline:none;resize:vertical;direction:rtl;
+  transition:all .3s;
+  box-shadow:inset 0 2px 8px rgba(0,0,0,.15);
+}
+.fg input::placeholder,.fg textarea::placeholder{color:rgba(215,215,215,.18)}
+.fg input:focus,.fg textarea:focus{
+  border-color:rgba(215,215,215,.3);
+  background:rgba(215,215,215,.07);
+  box-shadow:inset 0 2px 8px rgba(0,0,0,.1),0 0 0 3px rgba(215,215,215,.05);
+}
+.fg input.err,.fg textarea.err{border-color:rgba(220,80,80,.5)}
+.btn-send{
+  width:100%;padding:15px;
+  background:var(--light);color:var(--dark);
+  border:none;border-radius:14px;
+  font-size:.9rem;font-weight:500;letter-spacing:.06em;
+  transition:all .35s var(--ease);
+  box-shadow:0 4px 20px rgba(0,0,0,.2);
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  margin-top:8px;
+}
+.btn-send:hover{
+  background:#fff;transform:translateY(-2px);
+  box-shadow:0 12px 40px rgba(215,215,215,.2);
+}
+.btn-send:disabled{opacity:.5;transform:none;cursor:not-allowed}
+ 
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+footer{
+  padding:28px 60px;
+  border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  gap:20px;flex-wrap:wrap;
+}
+.foot-brand{
+  font-family:var(--font-d);font-size:1rem;font-weight:600;
+  color:rgba(215,215,215,.5);
+}
+.foot-copy{font-size:.75rem;color:rgba(215,215,215,.25);letter-spacing:.06em}
+ 
+/* ══════════════════════════════════════
+   TOAST
+══════════════════════════════════════ */
+#toast{
+  position:fixed;bottom:32px;left:50%;
+  transform:translateX(-50%) translateY(70px);
+  background:rgba(41,40,35,.92);
+  border:1px solid rgba(215,215,215,.18);
+  border-radius:100px;
+  padding:12px 28px;
+  font-size:.85rem;color:var(--light);
+  z-index:9997;white-space:nowrap;
+  backdrop-filter:blur(20px);
+  box-shadow:0 16px 48px rgba(0,0,0,.5),inset 0 1px 0 rgba(215,215,215,.1);
+  transition:transform .45s cubic-bezier(.34,1.56,.64,1),opacity .45s;
+  opacity:0;pointer-events:none;
+}
+#toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+ 
+/* ══════════════════════════════════════
+   REVEAL
+══════════════════════════════════════ */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.on{opacity:1;transform:translateY(0)}
+ 
+/* ══════════════════════════════════════
+   ANIMATIONS
+══════════════════════════════════════ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slide{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+@keyframes floatA{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-14px) rotate(1deg)}}
+@keyframes floatB{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-10px) rotate(-1.5deg)}}
+@keyframes floatC{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+ 
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media(max-width:960px){
+  nav{top:12px;padding:8px 10px}
+  .nav-logo{font-size:.85rem;padding:4px 10px}
+  .nav-links a{padding:5px 10px;font-size:.72rem}
+  #hero{padding:90px 24px 60px}
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .hero-card{display:none}
+  #about,#services,#portfolio,#skills,#contact{padding:80px 24px}
+  .about-layout{grid-template-columns:1fr;gap:48px}
+  .glass-panels{height:260px}
+  .services-grid{grid-template-columns:1fr}
+  .port-grid{grid-template-columns:1fr}
+  .pcard:first-child{grid-column:auto}
+  .skills-layout{grid-template-columns:1fr;gap:48px}
+  .frow{grid-template-columns:1fr}
+  .contact-form-card{padding:32px 24px}
+  footer{padding:20px 24px;flex-direction:column;text-align:center}
+  body{cursor:auto}
+  #cur-dot,#cur-ring{display:none}
+  .scroll-hint{display:none}
+}
+</style>
+</head>
+<body>
+ 
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
+<canvas id="bg-canvas"></canvas>
+<div id="toast" role="alert" aria-live="polite"></div>
+ 
+<div class="wrap">
+ 
+<!-- ══ NAV ══ -->
+<nav role="navigation" aria-label="ناوبری اصلی">
+  <span class="nav-logo">مهدی قسم‌زاده</span>
+  <div class="nav-sep"></div>
+  <ul class="nav-links">
+    <li><a href="#about">درباره</a></li>
+    <li><a href="#services">خدمات</a></li>
+    <li><a href="#portfolio">آثار</a></li>
+    <li><a href="#skills">مهارت</a></li>
+    <li><a href="#contact">تماس</a></li>
+  </ul>
+</nav>
+ 
+<!-- ══ HERO ══ -->
+<section id="hero" aria-label="معرفی مهدی قسم‌زاده">
+  <div class="hero-grid">
+ 
+    <div class="hero-left">
+      <p class="hero-tag"><span></span>پورتفولیو شخصی</p>
+      <h1 class="hero-name">
+        مهدی<br/>
+        <em>قسم‌زاده</em>
+      </h1>
+      <p class="hero-role">طراح &amp; توسعه‌دهنده وب</p>
+      <p class="hero-desc">
+        با ترکیب طراحی دقیق و کد تمیز، تجربه‌های دیجیتالی می‌سازم که کاربران را شگفت‌زده می‌کند — از ایده تا اجرای نهایی.
+      </p>
+      <div class="hero-btns">
+        <a href="#portfolio" class="btn-glass solid">نمونه کارها ↓</a>
+        <a href="#contact" class="btn-glass">همکاری کنیم</a>
+      </div>
+    </div>
+ 
+    <div class="hero-card" id="heroCard3d" aria-hidden="true">
+      <div class="hero-card-inner" id="heroCardInner">
+        <div class="card-avatar">م</div>
+        <p class="card-name-lg">مهدی قسم‌زاده</p>
+        <p class="card-sub">Mahdi Ghasemzadeh</p>
+        <div class="card-divider"></div>
+        <div class="card-stats">
+          <div>
+            <div class="cstat-num">۵۰<span style="font-size:1rem">+</span></div>
+            <div class="cstat-lbl">پروژه موفق</div>
+          </div>
+          <div>
+            <div class="cstat-num">۳<span style="font-size:1rem">+</span></div>
+            <div class="cstat-lbl">سال تجربه</div>
+          </div>
+        </div>
+        <div class="card-chips">
+          <span class="chip">UI/UX</span>
+          <span class="chip">React</span>
+          <span class="chip">Three.js</span>
+          <span class="chip">Next.js</span>
+          <span class="chip">GSAP</span>
+        </div>
+      </div>
+    </div>
+ 
+  </div>
+  <div class="scroll-hint" aria-hidden="true">
+    <span class="scroll-bar"></span> اسکرول
+  </div>
+</section>
+ 
+<!-- ══ ABOUT ══ -->
+<section id="about" aria-label="درباره مهدی قسم‌زاده">
+  <div class="about-layout">
+    <div>
+      <p class="sec-tag reveal">درباره من</p>
+      <h2 class="sec-title reveal">خلق تجربه‌های<br/><em>ماندگار</em></h2>
+      <p class="about-p reveal">
+        من <strong>مهدی قسم‌زاده</strong> هستم؛ طراح و توسعه‌دهنده‌ای که معتقدم دیجیتال باید زیبا، سریع و هوشمند باشد. هر پروژه برایم یک چالش خلاقانه است.
+      </p>
+      <p class="about-p reveal">
+        <strong>مهدی قسم‌زاده</strong> با تسلط بر ابزارهای طراحی مدرن و فریم‌ورک‌های پیشرو، تجربه کاربری استثنایی می‌سازد.
+      </p>
+    </div>
+    <div class="glass-panels reveal" aria-hidden="true">
+      <div class="gpanel gp1">
+        <div class="gpanel-icon">🎨</div>
+        <div class="gpanel-title">طراحی UI/UX</div>
+        <div class="gpanel-sub">Figma · Adobe XD</div>
+      </div>
+      <div class="gpanel gp2">
+        <div class="gpanel-icon">💻</div>
+        <div class="gpanel-title">فرانت‌اند</div>
+        <div class="gpanel-sub">React · Next.js</div>
+      </div>
+      <div class="gpanel gp3">
+        <div class="gpanel-icon">✨</div>
+        <div class="gpanel-title">سه‌بعدی</div>
+        <div class="gpanel-sub">Three.js · GSAP</div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ══ SERVICES ══ -->
+<section id="services" aria-label="خدمات مهدی قسم‌زاده">
+  <div class="sec-center reveal">
+    <p class="sec-tag">خدمات</p>
+    <h2 class="sec-title">چه کاری می‌کنم</h2>
+  </div>
+  <div class="services-grid">
+    <article class="scard reveal">
+      <div class="scard-num">۰۱</div>
+      <div class="scard-icon">🎨</div>
+      <h3 class="scard-title">طراحی UI/UX</h3>
+      <p class="scard-desc">رابط‌هایی طراحی می‌کنم که هم چشم‌نواز هستند هم شهودی — از ریسرچ تا پروتوتایپ نهایی.</p>
+    </article>
+    <article class="scard reveal">
+      <div class="scard-num">۰۲</div>
+      <div class="scard-icon">⚡</div>
+      <h3 class="scard-title">توسعه فرانت‌اند</h3>
+      <p class="scard-desc">کد تمیز با React و Next.js. سریع، مدرن و بهینه برای تمام دستگاه‌ها.</p>
+    </article>
+    <article class="scard reveal">
+      <div class="scard-num">۰۳</div>
+      <div class="scard-icon">🌐</div>
+      <h3 class="scard-title">تجربه سه‌بعدی</h3>
+      <p class="scard-desc">با Three.js و WebGL صحنه‌هایی می‌سازم که سایت شما را از رقبا متمایز می‌کند.</p>
+    </article>
+    <article class="scard reveal">
+      <div class="scard-num">۰۴</div>
+      <div class="scard-icon">✨</div>
+      <h3 class="scard-title">انیمیشن و موشن</h3>
+      <p class="scard-desc">با GSAP و Framer Motion حرکت‌هایی طراحی می‌کنم که کاربر را میخکوب می‌کند.</p>
+    </article>
+    <article class="scard reveal">
+      <div class="scard-num">۰۵</div>
+      <div class="scard-icon">🔍</div>
+      <h3 class="scard-title">SEO و عملکرد</h3>
+      <p class="scard-desc">Core Web Vitals عالی، ساختار معنایی صحیح و سرعت بارگذاری بهینه.</p>
+    </article>
+    <article class="scard reveal">
+      <div class="scard-num">۰۶</div>
+      <div class="scard-icon">📱</div>
+      <h3 class="scard-title">واکنش‌گرا</h3>
+      <p class="scard-desc">تجربه‌ای یکپارچه از موبایل تا وایدسکرین، بدون هیچ توافطی در کیفیت.</p>
+    </article>
+  </div>
+</section>
+ 
+<!-- ══ PORTFOLIO ══ -->
+<section id="portfolio" aria-label="نمونه‌کارهای مهدی قسم‌زاده">
+  <div style="max-width:1200px;margin:0 auto">
+    <p class="sec-tag reveal">آثار</p>
+    <h2 class="sec-title reveal">نمونه کارهای<br/><em>مهدی قسم‌زاده</em></h2>
+  </div>
+  <div class="port-grid">
+    <article class="pcard reveal">
+      <div class="pcard-thumb">
+        <div class="pthumb-bg pt1">
+          <div class="orb orb1"></div><div class="orb orb2"></div>
+        </div>
+        <span class="pcard-badge">UI/UX Design</span>
+      </div>
+      <div class="pcard-info">
+        <p class="pcard-meta">۱۴۰۳ — طراحی محصول</p>
+        <h3 class="pcard-title">پلتفرم مدیریت Nexus</h3>
+        <p class="pcard-desc">طراحی کامل یک SaaS برای تیم‌های چابک — داشبورد، کانبان و گزارش‌دهی.</p>
+      </div>
+    </article>
+    <article class="pcard reveal">
+      <div class="pcard-thumb">
+        <div class="pthumb-bg pt2">
+          <div class="orb orb1"></div>
+        </div>
+        <span class="pcard-badge">Frontend Dev</span>
+      </div>
+      <div class="pcard-info">
+        <p class="pcard-meta">۱۴۰۳ — وب‌اپلیکیشن</p>
+        <h3 class="pcard-title">فروشگاه Aurora</h3>
+        <p class="pcard-desc">یک تجربه خرید آنلاین با انیمیشن روان و Three.js.</p>
+      </div>
+    </article>
+    <article class="pcard reveal">
+      <div class="pcard-thumb">
+        <div class="pthumb-bg pt3">
+          <div class="orb orb2"></div>
+        </div>
+        <span class="pcard-badge">Motion Design</span>
+      </div>
+      <div class="pcard-info">
+        <p class="pcard-meta">۱۴۰۲ — لندینگ پیج</p>
+        <h3 class="pcard-title">استارتاپ Vanta</h3>
+        <p class="pcard-desc">لندینگ پیج با GSAP پیچیده و اجزای سه‌بعدی تعاملی.</p>
+      </div>
+    </article>
+  </div>
+</section>
+ 
+<!-- ══ SKILLS ══ -->
+<section id="skills" aria-label="مهارت‌های مهدی قسم‌زاده">
+  <div style="max-width:1200px;margin:0 auto">
+    <p class="sec-tag reveal">مهارت‌ها</p>
+    <h2 class="sec-title reveal">تخصص‌های من</h2>
+  </div>
+  <div class="skills-layout">
+    <div id="skillBars">
+      <div class="skill-item reveal">
+        <div class="skill-head"><span class="skill-name">UI/UX Design</span><span class="skill-pct">95%</span></div>
+        <div class="skill-track"><div class="skill-fill" style="width:95%"></div></div>
+      </div>
+      <div class="skill-item reveal">
+        <div class="skill-head"><span class="skill-name">React / Next.js</span><span class="skill-pct">90%</span></div>
+        <div class="skill-track"><div class="skill-fill" style="width:90%"></div></div>
+      </div>
+      <div class="skill-item reveal">
+        <div class="skill-head"><span class="skill-name">Three.js / WebGL</span><span class="skill-pct">80%</span></div>
+        <div class="skill-track"><div class="skill-fill" style="width:80%"></div></div>
+      </div>
+      <div class="skill-item reveal">
+        <div class="skill-head"><span class="skill-name">CSS / GSAP Animation</span><span class="skill-pct">92%</span></div>
+        <div class="skill-track"><div class="skill-fill" style="width:92%"></div></div>
+      </div>
+      <div class="skill-item reveal">
+        <div class="skill-head"><span class="skill-name">SEO &amp; Performance</span><span class="skill-pct">88%</span></div>
+        <div class="skill-track"><div class="skill-fill" style="width:88%"></div></div>
+      </div>
+    </div>
+    <div class="tech-orbs reveal">
+      <div class="torb"><div class="torb-icon">⚛️</div><div class="torb-name">React</div></div>
+      <div class="torb"><div class="torb-icon">▲</div><div class="torb-name">Next.js</div></div>
+      <div class="torb"><div class="torb-icon">🎭</div><div class="torb-name">Figma</div></div>
+      <div class="torb"><div class="torb-icon">🌐</div><div class="torb-name">Three.js</div></div>
+      <div class="torb"><div class="torb-icon">🟢</div><div class="torb-name">Node.js</div></div>
+      <div class="torb"><div class="torb-icon">💨</div><div class="torb-name">Tailwind</div></div>
+      <div class="torb"><div class="torb-icon">🔥</div><div class="torb-name">GSAP</div></div>
+      <div class="torb"><div class="torb-icon">📦</div><div class="torb-name">TypeScript</div></div>
+      <div class="torb"><div class="torb-icon">🐙</div><div class="torb-name">Git</div></div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ══ CONTACT ══ -->
+<section id="contact" aria-label="تماس با مهدی قسم‌زاده">
+  <div class="contact-wrap">
+    <div class="contact-big" aria-hidden="true">مهدی قسم‌زاده</div>
+    <div class="contact-form-card reveal">
+      <p class="sec-tag" style="justify-content:center;margin-bottom:12px">تماس با من</p>
+      <h2 class="sec-title" style="margin-bottom:32px;font-size:clamp(1.8rem,3vw,2.6rem)">یک پروژه در ذهن دارید؟</h2>
+ 
+      <div class="quick-btns">
+        <button class="qbtn" id="btn-email">📧 کپی ایمیل</button>
+        <button class="qbtn" id="btn-phone">📱 کپی شماره</button>
+        <a href="https://wa.me/989148705980" target="_blank" rel="noopener" class="qbtn">💬 واتساپ</a>
+        <a href="https://t.me/09148705980" target="_blank" rel="noopener" class="qbtn">✈️ تلگرام</a>
+      </div>
+ 
+      <div class="form-divider">یا پیام مستقیم بفرستید</div>
+ 
+      <div class="frow">
+        <div class="fg">
+          <label for="fn">نام شما</label>
+          <input type="text" id="fn" placeholder="علی رضایی" autocomplete="name"/>
+        </div>
+        <div class="fg">
+          <label for="fc">ایمیل یا شماره</label>
+          <input type="text" id="fc" placeholder="ایمیل یا موبایل" autocomplete="email"/>
+        </div>
+      </div>
+      <div class="fg">
+        <label for="fs">موضوع</label>
+        <input type="text" id="fs" placeholder="درباره چه پروژه‌ای صحبت کنیم؟"/>
+      </div>
+      <div class="fg">
+        <label for="fm">پیام</label>
+        <textarea id="fm" rows="5" placeholder="پروژه‌ات رو برام توضیح بده..."></textarea>
+      </div>
+      <button class="btn-send" id="btn-send" type="button">
+        <span id="bst">ارسال پیام به مهدی قسم‌زاده</span>
+        <span id="bsi" aria-hidden="true">✉️</span>
+      </button>
+    </div>
+  </div>
+</section>
+ 
+<!-- ══ FOOTER ══ -->
+<footer role="contentinfo">
+  <div class="foot-brand">مهدی قسم‌زاده</div>
+  <p class="foot-copy">© ۱۴۰۳ مهدی قسم‌زاده — تمامی حقوق محفوظ است</p>
+</footer>
+ 
+</div><!-- .wrap -->
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+'use strict';
+ 
+/* ════════════════════════════════════
+   CURSOR
+════════════════════════════════════ */
+const curDot  = document.getElementById('cur-dot');
+const curRing = document.getElementById('cur-ring');
+let cx=0,cy=0,rx=0,ry=0;
+ 
+document.addEventListener('mousemove', e=>{
+  cx = e.clientX; cy = e.clientY;
+  curDot.style.left  = cx+'px';
+  curDot.style.top   = cy+'px';
+});
+ 
+// smooth ring
+(function ringLoop(){
+  rx += (cx-rx)*.12;
+  ry += (cy-ry)*.12;
+  curRing.style.left = rx+'px';
+  curRing.style.top  = ry+'px';
+  requestAnimationFrame(ringLoop);
+})();
+ 
+document.querySelectorAll('a,button,.scard,.pcard,.torb,.chip').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hovered'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hovered'));
+});
+ 
+/* ════════════════════════════════════
+   THREE.JS BACKGROUND
+════════════════════════════════════ */
+(function initScene(){
+  const canvas   = document.getElementById('bg-canvas');
+  const renderer = new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
+  const scene    = new THREE.Scene();
+  const camera   = new THREE.PerspectiveCamera(55, innerWidth/innerHeight, .1, 200);
+  camera.position.z = 8;
+ 
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  renderer.setSize(innerWidth,innerHeight);
+ 
+  /* floating glass spheres */
+  const spheres = [];
+  const sData = [
+    {r:.8,  x: 4,   y: 1.5, z:-2, speed:.4},
+    {r:1.2, x:-4.5, y:-1,  z:-3, speed:.3},
+    {r:.5,  x: 2,   y:-2.5,z:-1, speed:.55},
+    {r:1.6, x:-2,   y: 3,  z:-5, speed:.25},
+    {r:.6,  x: 5.5, y:-3,  z:-2, speed:.45},
+  ];
+  sData.forEach(d=>{
+    const geo = new THREE.SphereGeometry(d.r,32,32);
+    const mat = new THREE.MeshPhysicalMaterial({
+      color:0xd7d7d7,
+      metalness:.1,
+      roughness:0,
+      transmission:1,
+      thickness:.5,
+      transparent:true,
+      opacity:.12,
+      wireframe:false,
+    });
+    const mesh = new THREE.Mesh(geo,mat);
+    mesh.position.set(d.x,d.y,d.z);
+    scene.add(mesh);
+    spheres.push({mesh,speed:d.speed,ox:d.x,oy:d.y});
+  });
+ 
+  /* wireframe torus */
+  const twGeo = new THREE.TorusGeometry(2.2,.6,20,60);
+  const twMat = new THREE.MeshBasicMaterial({
+    color:0xd7d7d7,wireframe:true,
+    transparent:true,opacity:.04,
+  });
+  const torus = new THREE.Mesh(twGeo,twMat);
+  torus.position.set(-3,0,-4);
+  scene.add(torus);
+ 
+  /* particle field */
+  const pCount = 500;
+  const pPos   = new Float32Array(pCount*3);
+  for(let i=0;i<pCount*3;i++) pPos[i]=(Math.random()-.5)*30;
+  const pGeo = new THREE.BufferGeometry();
+  pGeo.setAttribute('position',new THREE.BufferAttribute(pPos,3));
+  const pMat = new THREE.PointsMaterial({
+    color:0xd7d7d7,size:.015,
+    transparent:true,opacity:.35,
+  });
+  scene.add(new THREE.Points(pGeo,pMat));
+ 
+  /* grid plane */
+  const grid = new THREE.GridHelper(40,40,0x292823,0x292823);
+  grid.material.transparent=true;grid.material.opacity=.15;
+  grid.position.y=-4;
+  scene.add(grid);
+ 
+  /* lights */
+  scene.add(new THREE.AmbientLight(0xffffff,.4));
+  const dl = new THREE.DirectionalLight(0xd7d7d7,1);
+  dl.position.set(5,5,5);scene.add(dl);
+  const pl = new THREE.PointLight(0xd7d7d7,2,20);
+  pl.position.set(-3,4,2);scene.add(pl);
+ 
+  /* mouse parallax */
+  let tx=0,ty=0;
+  document.addEventListener('mousemove',e=>{
+    tx = (e.clientX/innerWidth  -.5)*.8;
+    ty = (e.clientY/innerHeight -.5)*.5;
+  });
+ 
+  window.addEventListener('resize',()=>{
+    camera.aspect=innerWidth/innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(innerWidth,innerHeight);
+  });
+ 
+  const clk = new THREE.Clock();
+  (function animate(){
+    requestAnimationFrame(animate);
+    const t = clk.getElapsedTime();
+ 
+    torus.rotation.x = t*.1;
+    torus.rotation.y = t*.07;
+ 
+    spheres.forEach((s,i)=>{
+      s.mesh.position.y = s.oy + Math.sin(t*s.speed+i*1.3)*1.2;
+      s.mesh.rotation.y = t*.2*s.speed;
+    });
+ 
+    camera.position.x += (tx - camera.position.x)*.04;
+    camera.position.y += (-ty - camera.position.y)*.04;
+    camera.lookAt(scene.position);
+ 
+    renderer.render(scene,camera);
+  })();
+})();
+ 
+/* ════════════════════════════════════
+   HERO CARD 3D TILT
+════════════════════════════════════ */
+const heroCard = document.getElementById('heroCard3d');
+const heroInner= document.getElementById('heroCardInner');
+if(heroCard && heroInner){
+  heroCard.addEventListener('mousemove',e=>{
+    const r = heroInner.getBoundingClientRect();
+    const x = (e.clientX-r.left)/r.width -.5;
+    const y = (e.clientY-r.top)/r.height-.5;
+    heroInner.style.transform=`rotateY(${x*22}deg) rotateX(${-y*14}deg) translateZ(10px)`;
+  });
+  heroCard.addEventListener('mouseleave',()=>{
+    heroInner.style.transform='';
+  });
+}
+ 
+/* ════════════════════════════════════
+   INTERSECTION OBSERVER — REVEAL
+════════════════════════════════════ */
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting) e.target.classList.add('on');
+  });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+ 
+/* skill bars */
+const sio = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.skill-fill').forEach(f=>f.classList.add('on'));
+      sio.unobserve(e.target);
+    }
+  });
+},{threshold:.3});
+const sb = document.getElementById('skillBars');
+if(sb) sio.observe(sb);
+ 
+/* ════════════════════════════════════
+   TOAST
+════════════════════════════════════ */
+let tTimer=null;
+function toast(msg,type='info',ms=3200){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.className='show';
+  clearTimeout(tTimer);
+  tTimer=setTimeout(()=>t.className='',ms);
+}
+ 
+/* ════════════════════════════════════
+   CLIPBOARD
+════════════════════════════════════ */
+function copyText(text,label){
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(text)
+      .then(()=>toast('✅ '+label+' کپی شد!'))
+      .catch(()=>fallback(text,label));
+  } else fallback(text,label);
+}
+function fallback(text,label){
+  const ta=document.createElement('textarea');
+  ta.value=text;
+  Object.assign(ta.style,{position:'fixed',opacity:'0'});
+  document.body.appendChild(ta);
+  ta.select();
+  try{ document.execCommand('copy'); toast('✅ '+label+' کپی شد!'); }
+  catch{ toast('❌ کپی نشد','error'); }
+  document.body.removeChild(ta);
+}
+ 
+document.getElementById('btn-email').addEventListener('click',()=>
+  copyText('mahdi.kasbokar001@gmail.com','ایمیل'));
+document.getElementById('btn-phone').addEventListener('click',()=>
+  copyText('09148705980','شماره تلفن'));
+ 
+/* ════════════════════════════════════
+   CONTACT FORM
+════════════════════════════════════ */
+document.getElementById('btn-send').addEventListener('click',function(){
+  const name = document.getElementById('fn').value.trim();
+  const cont = document.getElementById('fc').value.trim();
+  const subj = document.getElementById('fs').value.trim();
+  const msg  = document.getElementById('fm').value.trim();
+ 
+  ['fn','fc','fm'].forEach(id=>document.getElementById(id).classList.remove('err'));
+ 
+  let ok=true;
+  if(!name){document.getElementById('fn').classList.add('err');ok=false}
+  if(!cont){document.getElementById('fc').classList.add('err');ok=false}
+  if(!msg) {document.getElementById('fm').classList.add('err');ok=false}
+ 
+  if(!ok){toast('⚠️ لطفاً فیلدهای اجباری را پر کنید','error');return}
+ 
+  const sub  = subj||'پیام از سایت — '+name;
+  const body = 'نام: '+name+'\nتماس: '+cont+'\n\nپیام:\n'+msg;
+  const link = 'mailto:mahdi.kasbokar001@gmail.com?subject='+encodeURIComponent(sub)+'&body='+encodeURIComponent(body);
+ 
+  const btn=this;
+  btn.disabled=true;
+  document.getElementById('bst').textContent='در حال باز کردن...';
+  window.location.href=link;
+ 
+  setTimeout(()=>{
+    btn.disabled=false;
+    document.getElementById('bst').textContent='ارسال پیام به مهدی قسم‌زاده';
+    toast('📧 پنجره ایمیل باز شد — ارسال کن!','success',4000);
+    ['fn','fc','fs','fm'].forEach(id=>document.getElementById(id).value='');
+  },1500);
+});
+ 
+['fn','fc','fs','fm'].forEach(id=>{
+  document.getElementById(id).addEventListener('input',function(){
+    this.classList.remove('err');
+  });
+});
+ 
+/* ════════════════════════════════════
+   NAV COMPACT ON SCROLL
+════════════════════════════════════ */
+const nav=document.querySelector('nav');
+window.addEventListener('scroll',()=>{
+  nav.style.background = scrollY>80
+    ? 'rgba(41,40,35,.75)'
+    : 'rgba(41,40,35,.55)';
+});
+</script>
+</body>
+</html>
+ 
